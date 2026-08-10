@@ -1,0 +1,1 @@
+This project is created for deep practicing CRUD MySQL Database(inserting, selecting, updating, and deleting data from database).
