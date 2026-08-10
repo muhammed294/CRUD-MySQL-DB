@@ -1,0 +1,61 @@
+@layer global {
+    *,
+    *::after,
+    *::before {
+        box-sizing: border-box;
+        margin: 0;
+        padding: 0;
+    }
+    
+    h1:hover {
+        color: rgb(101, 99, 99);
+    }
+
+    p {
+        margin-block-start: 5px;
+    }
+
+    input,
+    button {
+        padding: 3px;
+        background: white;
+        border: 1px solid rgb(101, 99, 99);
+        border-radius: 3px;
+        margin-block-end: 5px;
+    }
+
+    .wrapper {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        border: 1px solid rgb(101, 99, 99);
+        border-radius: 5px;
+        padding: 5px;
+        position: absolute;
+        top: 60px;
+        right: 30%;
+        left: 30%;
+        box-shadow: 0 10px 10px  rgb(101, 99, 99);
+        text-align: center;
+    }
+
+    .sub__wrapper {
+        width: 70%;
+        height: auto;
+        text-align: left;
+    }
+
+    .hidden {
+        display: none;
+    }
+}
+
+@layer components {
+    .crud__wrapper {
+        display: grid;
+        grid-template-columns: repeat(4, 1fr);
+        gap: 1rem;
+        margin: 10px;
+    }
+}

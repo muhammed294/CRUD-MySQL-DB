@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style/style.css">
+    <script src="script/script.js" defer></script>
+    <title>CRUD-MySQL-DB</title>
+</head>
+<body>
+    <div class="crud__wrapper">
+        <div class="insert__wrapper">
+            <h1 id="insert">Insert</h1>
+            <div class="insert__patient-info wrapper hidden">
+                <div class="sub__wrapper">
+                    <h2>Patient Card</h2>
+                    <form action="/card" method="post" id="cardForm">
+                        <p>Card No</p>
+                        <p></p>
+                        <p>Patient Name</p>
+                        <input type="text" name="patientName" id="patientName">
+                        <p>Age</p>
+                        <input type="number" name="age" id="age">
+                        <p>Phone number</p>
+                        <input type="number" name="phoneNumber" id="phoneNumber">
+                        <p>Address</p>
+                        <input type="text" name="address" id="address"><br>
+                        <button type="submit">submit</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+        <div class="select__wrapper">
+            <h1 id="select">Select</h1>
+            <div class="patient__info wrapper hidden">
+                <h2>Patient information</h2>
+                <div class="sub__wrapper"></div>
+            </div>
+        </div>
+        <div class="update__wrapper">
+            <h1 id="update">Update</h1>
+            <div class="Update__patient-info wrapper hidden">
+                <div class="sub__wrapper">
+                    <h2>Update Patient's information</h2>
+                    <form action="">
+                        <p>Enter card number</p>
+                        <input type="number" name="cardNo" id="cardNo">
+                        <p>Enter updated data</p>
+                        <p>Patient Name</p>
+                        <input type="text" name="updatedPatientName" id="updatedPatientName">
+                        <p>Age</p>
+                        <input type="number" name="updatedAge" id="updatedAge">
+                        <p>Phone number</p>
+                        <input type="number" name="updatedPhoneNumber" id="updatedPhoneNumber">
+                        <p>Address</p>
+                        <input type="text" name="updatedAddress" id="updatedAddress">
+                        <button type="submit">submit</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+        <div class="delete__wrapper">
+            <h1 id="delete">Delete</h1>
+            <div class="delete__patient-info wrapper hidden">
+                <h2>Remove patient information</h2>
+                <p>Enter Card number</p>
+                <input type="number" name="removableCardNo" id="removableCardNo">
+                <button type="button">remove</button>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
