@@ -33,8 +33,15 @@
         <div class="select__wrapper">
             <h1 id="select">Select</h1>
             <div class="patient__info wrapper hidden">
-                <h2>Patient information</h2>
-                <div class="sub__wrapper"></div>
+                <div class="sub__wrapper">
+                    <h2>Patient information</h2>
+                    <form action="/patient/info" id="patientInfo">
+                        <p>Enter card number</p>
+                        <input type="number" name="Card_id" id="cardNo1">
+                        <button type="submit">submit</button>
+                    </form>
+                    <div class="patient__info-wrapper"></div>
+                </div>
             </div>
         </div>
         <div class="update__wrapper">
@@ -42,9 +49,9 @@
             <div class="Update__patient-info wrapper hidden">
                 <div class="sub__wrapper">
                     <h2>Update Patient's information</h2>
-                    <form action="">
+                    <form action="/update/info" id="updateForm">
                         <p>Enter card number</p>
-                        <input type="number" name="cardNo" id="cardNo">
+                        <input type="number" name="Card_id" id="cardNo2">
                         <p>Enter updated data</p>
                         <p>Patient Name</p>
                         <input type="text" name="updatedPatientName" id="updatedPatientName">
@@ -63,9 +70,14 @@
             <h1 id="delete">Delete</h1>
             <div class="delete__patient-info wrapper hidden">
                 <h2>Remove patient information</h2>
-                <p>Enter Card number</p>
-                <input type="number" name="removableCardNo" id="removableCardNo">
-                <button type="button">remove</button>
+                <form action="/patient/info" id="patientInfo2">
+                    <p>Enter card number</p>
+                    <input type="number" name="Card_id" id="cardNo3">
+                    <button type="submit">submit</button>
+                    <div class="patient__info-wrapper2"></div>
+                </form>
+                    <button type="button" id="removeBtn">Remove</button>
+
             </div>
         </div>
     </div>
