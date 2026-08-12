@@ -31,6 +31,7 @@ connection.connect((err) => {
   else {console.log("connected to MySQL")};
 });
 
+//Card info
 app.post("/card", async (req, res) => {
     const { patientName, age, phoneNumber, address } = req.body;
     // console.log("POST/card");
@@ -88,4 +89,147 @@ app.post("/card", async (req, res) => {
         );
 
     });
-})
+});
+
+//get patient Info
+app.get("/patient/info", async (req, res) => {
+    const { Card_id } = req.query;
+
+    const sql =` 
+        SELECT * FROM patient_info
+        WHERE Card_id = ?
+    `;
+
+    connection.query(sql, [Card_id], (err, result) => {
+        if (err) {
+            console.log(err);
+
+            return res.status(500).json({
+                success: false,
+                message: "Database error."
+            });
+        } 
+        if (result.length === 0) {
+
+            return res.status(404).json({
+                success: false,
+                message: "There is no patient on this card no"
+            });
+        }
+        if (result.length > 0) {
+
+            return res.json({
+                success:true,
+                patient: result[0]
+            });
+            
+        }
+        console.log(res.json(result));
+    });
+});
+
+//update info
+app.put("/update/info", (req, res) => {
+
+    const {
+        Card_id,
+        updatedPatientName,
+        updatedAge,
+        updatedPhoneNumber,
+        updatedAddress
+    } = req.body;
+
+
+    const sqlChecker = `
+        SELECT * FROM patient_info
+        WHERE Card_id = ?
+    `;
+
+    connection.query(sqlChecker, [Card_id], (err, result) => {
+
+        if (err) {
+            console.log("SELECT error:", err);
+
+            return res.status(500).json({
+                success: false,
+                message: "Database error"
+            });
+        }
+
+        if (result.length === 0) {
+            return res.status(404).json({
+                success: false,
+                message: "Patient not found"
+            });
+        }
+
+        const sql = 
+            `UPDATE patient_info
+            SET 
+                Patient_name = ?,
+                Age = ?,
+                Phone_number = ?,
+                Address = ?
+            WHERE Card_id = ?
+        `;
+
+        connection.query(sql,[
+                updatedPatientName,
+                updatedAge,
+                updatedPhoneNumber,
+                updatedAddress,
+                Card_id
+            ],(err, result) => {
+
+                if (err) {
+                    console.log("UPDATE error:", err);
+
+                    return res.status(500).json({
+                        success: false,
+                        message: "Database error"
+                    });
+                }
+
+                return res.json({
+                    success: true,
+                    message: "Patient updated successfully"
+                });
+            }
+        );
+    });
+});
+
+//remove info
+app.delete("/patient/:Card_id", (req, res) => {
+
+    const { Card_id } = req.params;
+
+    const sql =` 
+        DELETE FROM patient_info
+        WHERE Card_id = ?
+    `;
+
+    connection.query(sql, [Card_id], (err, result) => {
+
+        if (err) {
+            console.log(err);
+
+            return res.status(500).json({
+                success: false,
+                message: "Database error"
+            });
+        }
+
+        if (result.affectedRows === 0) {
+            return res.status(404).json({
+                success: false,
+                message: "Patient not found"
+            });
+        }
+
+        res.json({
+            success: true,
+            message: "Patient removed successfully"
+        });
+    });
+});
